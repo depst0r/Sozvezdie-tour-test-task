@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import "./Cards.css";
 import Col from "react-bootstrap/Col";
 
-export const Cards = () => {
+export const Cards = ({ cardsSelected }) => {
   const [card, setCard] = useState([]);
 
   useEffect(() => {
@@ -17,11 +17,16 @@ export const Cards = () => {
       {card.map((dataCards) => {
         return (
           <Col key={dataCards.id}>
-            <Card style={{ width: "25rem", margin: "5%" }}>
+            <Card
+              style={{ width: "25rem", margin: "5%" }}
+              onClick={() => cardsSelected(dataCards.id)}
+            >
               <Card.Img variant="top" src="card" />
               <Card.Body>
                 <Card.Title>{dataCards.title}</Card.Title>
                 <Card.Text>{dataCards.header}</Card.Text>
+                <Card.Text>{dataCards.periodStart}</Card.Text>
+                <Card.Text>Цена от {dataCards.minPrice} ₽ </Card.Text>
               </Card.Body>
             </Card>
           </Col>
