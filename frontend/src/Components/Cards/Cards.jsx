@@ -8,20 +8,21 @@ export const Cards = () => {
 
   useEffect(() => {
     fetch("https://cdn.sozvezdie-tour.ru/content/demo_offers-231105.json")
-      .then((resp) => resp.json())
-      .then((res) => setCard(res));
+      .then((responseData) => responseData.json())
+      .then((responseDataJSON) => setCard(responseDataJSON));
   }, []);
 
   return (
     <>
-      {card.map((res) => {
+      {card.map((dataCards) => {
         return (
-          <Col key={res.id}>
+          <Col key={dataCards.id}>
             <Card style={{ width: "25rem" }}>
               <Card.Img variant="top" src="card" />
               <Card.Body>
-                <Card.Title>{res.title}</Card.Title>
+                <Card.Title>{dataCards.title}</Card.Title>
               </Card.Body>
+              {}
             </Card>
           </Col>
         );
