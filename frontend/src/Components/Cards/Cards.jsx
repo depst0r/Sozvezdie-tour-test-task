@@ -17,10 +17,11 @@ export const Cards = () => {
       {card.map((dataCards) => {
         return (
           <Col key={dataCards.id}>
-            <Card style={{ width: "25rem" }}>
+            <Card style={{ width: "25rem", margin: "5%" }}>
               <Card.Img variant="top" src="card" />
               <Card.Body>
                 <Card.Title>{dataCards.title}</Card.Title>
+                <Card.Text>{dataCards.header}</Card.Text>
               </Card.Body>
             </Card>
           </Col>

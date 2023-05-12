@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
     <Container>
-      <Row>
+      <Row className="p5">
         <Cards />
       </Row>
     </Container>
