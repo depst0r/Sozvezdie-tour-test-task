@@ -22,7 +22,6 @@ export const Cards = () => {
               <Card.Body>
                 <Card.Title>{dataCards.title}</Card.Title>
               </Card.Body>
-              {}
             </Card>
           </Col>
         );

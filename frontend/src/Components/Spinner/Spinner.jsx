@@ -1,27 +1,10 @@
 import React from "react";
-import "./Spinner.css";
+import Spinner from "react-bootstrap/Spinner";
 
-export const Spinner = () => {
+export const MySpinner = () => {
   return (
-    <>
-      <div className="loadingio-spinner-wedges-8b9mfc029s">
-        <div className="ldio-qlvfxsm57yf">
-          <div>
-            <div>
-              <div></div>
-            </div>
-            <div>
-              <div></div>
-            </div>
-            <div>
-              <div></div>
-            </div>
-            <div>
-              <div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+    <Spinner animation="border" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </Spinner>
   );
 };
