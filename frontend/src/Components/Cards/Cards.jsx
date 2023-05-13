@@ -15,6 +15,7 @@ export const Cards = ({ cardsSelected }) => {
   return (
     <>
       {card.map((dataCards) => {
+        const date = () => new Date(dataCards.periodStart);
         return (
           <Col key={dataCards.id}>
             <Card
@@ -25,7 +26,10 @@ export const Cards = ({ cardsSelected }) => {
               <Card.Body>
                 <Card.Title>{dataCards.title}</Card.Title>
                 <Card.Text>{dataCards.header}</Card.Text>
-                <Card.Text>{dataCards.periodStart}</Card.Text>
+                <Card.Text>
+                  {date().getDay()}-{date().getMonth() + 1}-
+                  {date().getFullYear()}
+                </Card.Text>
                 <Card.Text>Цена от {dataCards.minPrice} ₽ </Card.Text>
               </Card.Body>
             </Card>
