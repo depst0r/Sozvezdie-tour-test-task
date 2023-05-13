@@ -16,6 +16,10 @@ export const Cards = ({ cardsSelected }) => {
     return num < 10 ? "0" + num : num;
   };
 
+  // const errorPrice = (price) => {
+  //   return
+  // };
+
   return (
     <>
       {card.map((dataCards) => {
@@ -31,10 +35,14 @@ export const Cards = ({ cardsSelected }) => {
                 <Card.Title>{dataCards.title}</Card.Title>
                 <Card.Text>{dataCards.header}</Card.Text>
                 <Card.Text>
-                  {addZero(date().getDay())}-{addZero(date().getMonth() + 1)}-
-                  {date().getFullYear()}
+                  {addZero(date().getDay())}.{addZero(date().getMonth() + 1)}-
+                  {dataCards.periodEnd}
                 </Card.Text>
-                <Card.Text>Цена от {dataCards.minPrice} ₽ </Card.Text>
+                <Card.Text>
+                  {!dataCards.minPrice
+                    ? "Уточнить цену"
+                    : `Цена от ${dataCards.minPrice} ₽`}
+                </Card.Text>
               </Card.Body>
             </Card>
           </Col>
