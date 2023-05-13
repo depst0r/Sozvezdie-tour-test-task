@@ -16,14 +16,16 @@ export const Cards = ({ cardsSelected }) => {
     return num < 10 ? "0" + num : num;
   };
 
-  // const errorPrice = (price) => {
-  //   return
-  // };
+  const numberOfDays = (endDate, startDate) => {
+    return startDate - endDate;
+  };
 
   return (
     <>
       {card.map((dataCards) => {
-        const date = () => new Date(dataCards.periodStart);
+        const dateStart = () => new Date(dataCards.periodStart);
+        const dateEnd = () => new Date(dataCards.periodEnd);
+
         return (
           <Col key={dataCards.id}>
             <Card
@@ -35,8 +37,15 @@ export const Cards = ({ cardsSelected }) => {
                 <Card.Title>{dataCards.title}</Card.Title>
                 <Card.Text>{dataCards.header}</Card.Text>
                 <Card.Text>
-                  {addZero(date().getDay())}.{addZero(date().getMonth() + 1)}-
-                  {dataCards.periodEnd}
+                  {addZero(dateStart().getDay())}.
+                  {addZero(dateStart().getMonth() + 1)}-
+                  {addZero(dateEnd().getDate())}.
+                  {addZero(dateEnd().getMonth() + 1)}
+                  <Card.Text>
+                    {numberOfDays(dateStart().getDay(), dateEnd().getDate()) +
+                      1}
+                    дн.
+                  </Card.Text>
                 </Card.Text>
                 <Card.Text>
                   {!dataCards.minPrice
