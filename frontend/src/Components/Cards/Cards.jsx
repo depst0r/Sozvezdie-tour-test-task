@@ -21,7 +21,7 @@ export const Cards = ({ cardsSelected }) => {
               style={{ width: "25rem", margin: "5%" }}
               onClick={() => cardsSelected(dataCards.id)}
             >
-              <Card.Img variant="top" src="card" />
+              <Card.Img variant="top" src={dataCards.photoCard?.thumbnail} />
               <Card.Body>
                 <Card.Title>{dataCards.title}</Card.Title>
                 <Card.Text>{dataCards.header}</Card.Text>

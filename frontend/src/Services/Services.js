@@ -10,7 +10,7 @@ class TourService {
   };
 
   getAllCards = () => {
-    return this.getAllCards(
+    return this.getResours(
       "https://cdn.sozvezdie-tour.ru/content/demo_offers-231105.json"
     );
   };
