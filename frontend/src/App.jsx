@@ -16,10 +16,10 @@ function App() {
     <>
       <Container>
         <Row>
+          <CardDiteils selected={selected} />
           <Cards cardsSelected={cardsSelected} />
         </Row>
       </Container>
-      <CardDiteils selected={selected} />
     </>
   );
 }

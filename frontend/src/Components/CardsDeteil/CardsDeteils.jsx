@@ -1,17 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 export const CardDiteils = ({ selected }) => {
-  const [cardId, setCardId] = useState(null);
-
-  //   useEffect(() => {
-  //     fetch("https://cdn.sozvezdie-tour.ru/content/demo_offers-231105.json")
-  //       .then((responseData) => responseData.json())
-  //       .then((responseDataJSON) => setCardid(responseDataJSON));
-  //   }, [cardId]);
-
   return (
     <>
-      <div>{selected}</div>
+      <div>{selected?.description.replace(/<p>/g, "")}</div>
     </>
   );
 };

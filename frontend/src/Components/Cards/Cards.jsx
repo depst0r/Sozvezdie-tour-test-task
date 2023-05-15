@@ -17,7 +17,7 @@ export const Cards = ({ cardsSelected }) => {
   };
 
   const numberOfDays = (endDate, startDate) => {
-    return startDate - endDate;
+    return Math.abs(startDate - endDate);
   };
 
   return (
@@ -30,9 +30,13 @@ export const Cards = ({ cardsSelected }) => {
           <Col key={dataCards.id}>
             <Card
               style={{ width: "25rem", margin: "5%" }}
-              onClick={() => cardsSelected(dataCards.id)}
+              onClick={() => cardsSelected(dataCards)}
             >
-              <Card.Img variant="top" src={dataCards.photoCard?.thumbnail} />
+              <Card.Img
+                variant="top"
+                src={dataCards.photoCard?.thumbnail}
+                alt="img"
+              />
               <Card.Body>
                 <Card.Title>{dataCards.title}</Card.Title>
                 <Card.Text>{dataCards.header}</Card.Text>
