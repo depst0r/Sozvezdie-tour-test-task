@@ -6,18 +6,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { CardDiteils } from "./Components/CardsDeteil/CardsDeteils";
 
 function App() {
-  const [selected, setSelected] = useState(null);
+  const [cardDiteilsData, setCardDiteilsData] = useState(null);
 
-  const cardsSelected = (id) => {
-    setSelected(id);
+  const cardsData = (data) => {
+    setCardDiteilsData(data);
   };
 
   return (
     <>
       <Container>
         <Row>
-          <CardDiteils selected={selected} />
-          <Cards cardsSelected={cardsSelected} />
+          <CardDiteils cardDiteilsData={cardDiteilsData} />
+          <Cards cardsData={cardsData} />
         </Row>
       </Container>
     </>

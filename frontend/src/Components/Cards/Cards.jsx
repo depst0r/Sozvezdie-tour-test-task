@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import "./Cards.css";
 import Col from "react-bootstrap/Col";
 
-export const Cards = ({ cardsSelected }) => {
+export const Cards = ({ cardsData }) => {
   const [card, setCard] = useState([]);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export const Cards = ({ cardsSelected }) => {
           <Col key={dataCards.id}>
             <Card
               style={{ width: "25rem", margin: "5%" }}
-              onClick={() => cardsSelected(dataCards)}
+              onClick={() => cardsData(dataCards)}
             >
               <Card.Img
                 variant="top"

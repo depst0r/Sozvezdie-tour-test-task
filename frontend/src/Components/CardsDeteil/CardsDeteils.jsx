@@ -1,9 +1,15 @@
 import React from "react";
 
-export const CardDiteils = ({ selected }) => {
+export const CardDiteils = ({ cardDiteilsData }) => {
   return (
     <>
-      <div>{selected?.description.replace(/<p>/g, "")}</div>
+      <h1>{cardDiteilsData?.title}</h1>
+      <div>
+        {cardDiteilsData?.periodStart}
+        {cardDiteilsData?.periodEnd}
+      </div>
+      {cardDiteilsData?.minPrice}
+      <div>{cardDiteilsData?.description.replace(/[\/<p>/]/g, "")}</div>
     </>
   );
 };
