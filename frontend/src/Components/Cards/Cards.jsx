@@ -14,7 +14,7 @@ export const Cards = ({ cardsData, addZero }) => {
   }, []);
 
   const numberOfDays = (endDate, startDate) => {
-    return Math.abs(startDate - endDate);
+    return Math.abs(startDate - endDate + 1);
   };
 
   return (
@@ -33,7 +33,7 @@ export const Cards = ({ cardsData, addZero }) => {
                 variant="top"
                 src={
                   !dataCards.photoCard?.thumbnail
-                    ? { foto }
+                    ? dataCards.photoAlbum.map((thumbnail) => thumbnail)
                     : dataCards.photoCard?.thumbnail
                 }
                 alt="img"
@@ -47,9 +47,12 @@ export const Cards = ({ cardsData, addZero }) => {
                   {addZero(dateEnd().getDate())}.
                   {addZero(dateEnd().getMonth() + 1)}
                   <Card.Text>
-                    {numberOfDays(dateStart().getDay(), dateEnd().getDate()) +
-                      1}
-                    дн.
+                    {!dataCards.periodEnd && !dataCards.periodStart
+                      ? ""
+                      : numberOfDays(
+                          dateStart().getDay(),
+                          dateEnd().getDate()
+                        ) + "дн."}
                   </Card.Text>
                 </Card.Text>
                 <Card.Text>

@@ -10,9 +10,14 @@ export const CardDiteils = ({ cardDiteilsData }) => {
       </div>
       {cardDiteilsData?.minPrice}
       <div>{cardDiteilsData?.description.replace(/[\/<p>/]/g, "")}</div>
-      {cardDiteilsData.route.map((res) => (
+      {cardDiteilsData?.route.map((res) => (
         <div>{res}</div>
       ))}
+      <div className="album">
+        {cardDiteilsData?.photoAlbum?.map((photo) => (
+          <img src={photo.thumbnail} alt="img" />
+        ))}
+      </div>
     </>
   );
 };
