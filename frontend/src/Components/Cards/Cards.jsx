@@ -23,7 +23,7 @@ export const Cards = ({ cardsData, addZero, numberOfDays }) => {
             <Card
               style={{ width: "25rem", margin: "5%" }}
               onClick={() => cardsData(dataCards)}
-              className="text-center"
+              className="text-center card"
             >
               <Card.Img
                 variant="top"
@@ -41,7 +41,7 @@ export const Cards = ({ cardsData, addZero, numberOfDays }) => {
               <Card.Body>
                 <Card.Body>{dataCards.header}</Card.Body>
 
-                <Card.Text className="test">
+                <Card.Text className="date">
                   {!dataCards.periodEnd && !dataCards.periodStart
                     ? "Уточнить дату"
                     : `${addZero(dateStart().getDay())}.${addZero(
