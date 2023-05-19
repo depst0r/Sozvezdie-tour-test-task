@@ -10,3 +10,8 @@
 .c-white {
     color:white;
 }
+.test {
+    border: 4px double black; /* Параметры границы */
+    background-color: #edf2b8;
+    border-radius: 50px 50px 50px 50px;
+}

@@ -40,30 +40,25 @@ export const Cards = ({ cardsData, addZero, numberOfDays }) => {
 
               <Card.Body>
                 <Card.Body>{dataCards.header}</Card.Body>
-                <Card.Footer className="text-muted">
-                  <Card.Text>
-                    {!dataCards.periodEnd && !dataCards.periodStart
-                      ? "Уточнить дату"
-                      : `${addZero(dateStart().getDay())}.${addZero(
-                          dateStart().getMonth() + 1
-                        )}-${addZero(dateEnd().getDate())}.${addZero(
-                          dateEnd().getMonth() + 1
-                        )}`}
-                    <Card.Text>
-                      {!dataCards.periodEnd && !dataCards.periodStart
-                        ? ""
-                        : numberOfDays(
-                            dateStart().getDay(),
-                            dateEnd().getDate()
-                          ) + "дн."}
-                    </Card.Text>
-                  </Card.Text>
-                  <Card.Text>
-                    {!dataCards.minPrice
-                      ? "Уточнить цену"
-                      : `Цена от ${dataCards.minPrice.toLocaleString()} ₽`}
-                  </Card.Text>
-                </Card.Footer>
+
+                <Card.Text className="test">
+                  {!dataCards.periodEnd && !dataCards.periodStart
+                    ? "Уточнить дату"
+                    : `${addZero(dateStart().getDay())}.${addZero(
+                        dateStart().getMonth() + 1
+                      )}-${addZero(dateEnd().getDate())}.${addZero(
+                        dateEnd().getMonth() + 1
+                      )}`}{" "}
+                  {!dataCards.periodEnd && !dataCards.periodStart
+                    ? ""
+                    : numberOfDays(dateStart().getDay(), dateEnd().getDate()) +
+                      "дн."}
+                </Card.Text>
+                <Card.Text>
+                  {!dataCards.minPrice
+                    ? "Уточнить цену"
+                    : `Цена от ${dataCards.minPrice.toLocaleString("ru-RU")} ₽`}
+                </Card.Text>
               </Card.Body>
             </Card>
           </Col>
