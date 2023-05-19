@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import "./Cards.css";
 import Col from "react-bootstrap/Col";
-import foto from "../Img/no_img.jfif";
 
-export const Cards = ({ cardsData, addZero }) => {
+export const Cards = ({ cardsData, addZero, numberOfDays }) => {
   const [card, setCard] = useState([]);
 
   useEffect(() => {
@@ -12,10 +11,6 @@ export const Cards = ({ cardsData, addZero }) => {
       .then((responseData) => responseData.json())
       .then((responseDataJSON) => setCard(responseDataJSON));
   }, []);
-
-  const numberOfDays = (endDate, startDate) => {
-    return Math.abs(startDate - endDate + 1);
-  };
 
   return (
     <>
@@ -33,19 +28,22 @@ export const Cards = ({ cardsData, addZero }) => {
                 variant="top"
                 src={
                   !dataCards.photoCard?.thumbnail
-                    ? dataCards.photoAlbum.map((thumbnail) => thumbnail)
+                    ? ""
                     : dataCards.photoCard?.thumbnail
                 }
-                alt="img"
+                alt="Изоброжение отсуствует"
               />
               <Card.Body>
                 <Card.Title>{dataCards.title}</Card.Title>
                 <Card.Text>{dataCards.header}</Card.Text>
                 <Card.Text>
-                  {addZero(dateStart().getDay())}.
-                  {addZero(dateStart().getMonth() + 1)}-
-                  {addZero(dateEnd().getDate())}.
-                  {addZero(dateEnd().getMonth() + 1)}
+                  {!dataCards.periodEnd && !dataCards.periodStart
+                    ? "Уточнить дату"
+                    : `${addZero(dateStart().getDay())}.${addZero(
+                        dateStart().getMonth() + 1
+                      )}-${addZero(dateEnd().getDate())}.${addZero(
+                        dateEnd().getMonth() + 1
+                      )}`}
                   <Card.Text>
                     {!dataCards.periodEnd && !dataCards.periodStart
                       ? ""

@@ -1,6 +1,6 @@
 import React from "react";
 
-export const CardDiteils = ({ cardDiteilsData }) => {
+export const CardDiteils = ({ cardDiteilsData, numberOfDays, addZero }) => {
   return (
     <>
       <h1>{cardDiteilsData?.title}</h1>
@@ -15,7 +15,7 @@ export const CardDiteils = ({ cardDiteilsData }) => {
       ))}
       <div className="album">
         {cardDiteilsData?.photoAlbum?.map((photo) => (
-          <img src={photo.thumbnail} alt="img" />
+          <img src={photo.thumbnail} alt="" />
         ))}
       </div>
     </>
