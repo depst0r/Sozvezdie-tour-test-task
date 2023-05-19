@@ -4,7 +4,7 @@ import "./Cards.css";
 import Col from "react-bootstrap/Col";
 import foto from "../Img/no_img.jfif";
 
-export const Cards = ({ cardsData }) => {
+export const Cards = ({ cardsData, addZero }) => {
   const [card, setCard] = useState([]);
 
   useEffect(() => {
@@ -12,10 +12,6 @@ export const Cards = ({ cardsData }) => {
       .then((responseData) => responseData.json())
       .then((responseDataJSON) => setCard(responseDataJSON));
   }, []);
-
-  const addZero = (num) => {
-    return num < 10 ? "0" + num : num;
-  };
 
   const numberOfDays = (endDate, startDate) => {
     return Math.abs(startDate - endDate);

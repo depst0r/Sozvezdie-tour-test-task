@@ -12,12 +12,16 @@ function App() {
     setCardDiteilsData(data);
   };
 
+  const addZero = (num) => {
+    return num < 10 ? "0" + num : num;
+  };
+
   return (
     <>
       <Container>
         <Row>
-          <CardDiteils cardDiteilsData={cardDiteilsData} />
-          <Cards cardsData={cardsData} />
+          <CardDiteils cardDiteilsData={cardDiteilsData} addZero={addZero} />
+          <Cards cardsData={cardsData} addZero={addZero} />
         </Row>
       </Container>
     </>
