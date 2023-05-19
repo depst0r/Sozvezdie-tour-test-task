@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
-import "./Cards.css";
+import "./cards.css";
 import Col from "react-bootstrap/Col";
+import { Link } from "react-router-dom";
 
 export const Cards = ({ cardsData, addZero, numberOfDays }) => {
   const [card, setCard] = useState([]);
@@ -20,27 +21,21 @@ export const Cards = ({ cardsData, addZero, numberOfDays }) => {
 
         return (
           <Col key={dataCards.id} className="img-wrap">
-            <Card
-              style={{ width: "25rem", margin: "5%" }}
-              onClick={() => cardsData(dataCards)}
-              className="text-center card"
-            >
-              <Card.Img
-                variant="top"
-                src={
-                  !dataCards.photoCard?.thumbnail
-                    ? ""
-                    : dataCards.photoCard?.thumbnail
-                }
-                alt="Изоброжение отсуствует"
-              />
-              <Card.Header className="textTitle">
-                <span className="c-white">{dataCards.title}</span>
-              </Card.Header>
-
-              <Card.Body>
-                <Card.Body>{dataCards.header}</Card.Body>
-
+            <Link to="/diteils">
+              <Card
+                style={{ width: "25rem", margin: "5%" }}
+                onClick={() => cardsData(dataCards)}
+                className="text-center card"
+              >
+                <Card.Img
+                  variant="top"
+                  src={
+                    !dataCards.photoCard?.thumbnail
+                      ? ""
+                      : dataCards.photoCard?.thumbnail
+                  }
+                  alt="Изоброжение отсуствует"
+                />
                 <Card.Text className="date">
                   {!dataCards.periodEnd && !dataCards.periodStart
                     ? "Уточнить дату"
@@ -51,16 +46,27 @@ export const Cards = ({ cardsData, addZero, numberOfDays }) => {
                       )}`}{" "}
                   {!dataCards.periodEnd && !dataCards.periodStart
                     ? ""
-                    : numberOfDays(dateStart().getDay(), dateEnd().getDate()) +
-                      "дн."}
+                    : `(${numberOfDays(
+                        dateStart().getDay(),
+                        dateEnd().getDate()
+                      )} дн.)`}
                 </Card.Text>
-                <Card.Text>
-                  {!dataCards.minPrice
-                    ? "Уточнить цену"
-                    : `Цена от ${dataCards.minPrice.toLocaleString("ru-RU")} ₽`}
-                </Card.Text>
-              </Card.Body>
-            </Card>
+                <Card.Header className="textTitle">
+                  <span className="c-white">{dataCards.title}</span>
+                </Card.Header>
+
+                <Card.Body>
+                  <Card.Body>{dataCards.header}</Card.Body>
+                  <Card.Text>
+                    {!dataCards.minPrice
+                      ? "Уточнить цену"
+                      : `Цена от ${dataCards.minPrice.toLocaleString(
+                          "ru-RU"
+                        )} ₽`}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Link>
           </Col>
         );
       })}

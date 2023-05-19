@@ -4,12 +4,14 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CardDiteils } from "./Components/cardsDeteil/cardsDeteils";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   const [cardDiteilsData, setCardDiteilsData] = useState(null);
 
   const cardsData = (data) => {
     setCardDiteilsData(data);
+    console.log(cardDiteilsData, "app");
   };
 
   const addZero = (num) => {
@@ -21,22 +23,38 @@ function App() {
   };
 
   return (
-    <>
-      <Container>
-        <Row>
-          <CardDiteils
-            cardDiteilsData={cardDiteilsData}
-            numberOfDays={numberOfDays}
-            addZero={addZero}
-          />
-          <Cards
-            cardsData={cardsData}
-            addZero={addZero}
-            numberOfDays={numberOfDays}
-          />
-        </Row>
-      </Container>
-    </>
+    <Router>
+      <>
+        <Container>
+          <Row>
+            <Routes>
+              <Route
+                path="/diteils"
+                element={
+                  <CardDiteils
+                    cardDiteilsData={cardDiteilsData}
+                    numberOfDays={numberOfDays}
+                    addZero={addZero}
+                  />
+                }
+              />
+
+              <Route
+                exact
+                path="/"
+                element={
+                  <Cards
+                    cardsData={cardsData}
+                    addZero={addZero}
+                    numberOfDays={numberOfDays}
+                  />
+                }
+              />
+            </Routes>
+          </Row>
+        </Container>
+      </>
+    </Router>
   );
 }
 
