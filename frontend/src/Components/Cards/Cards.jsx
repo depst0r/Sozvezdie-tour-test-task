@@ -19,10 +19,11 @@ export const Cards = ({ cardsData, addZero, numberOfDays }) => {
         const dateEnd = () => new Date(dataCards.periodEnd);
 
         return (
-          <Col key={dataCards.id}>
+          <Col key={dataCards.id} className="img-wrap">
             <Card
               style={{ width: "25rem", margin: "5%" }}
               onClick={() => cardsData(dataCards)}
+              className="text-center"
             >
               <Card.Img
                 variant="top"
@@ -33,31 +34,36 @@ export const Cards = ({ cardsData, addZero, numberOfDays }) => {
                 }
                 alt="Изоброжение отсуствует"
               />
+              <Card.Header className="textTitle">
+                <span className="c-white">{dataCards.title}</span>
+              </Card.Header>
+
               <Card.Body>
-                <Card.Title>{dataCards.title}</Card.Title>
-                <Card.Text>{dataCards.header}</Card.Text>
-                <Card.Text>
-                  {!dataCards.periodEnd && !dataCards.periodStart
-                    ? "Уточнить дату"
-                    : `${addZero(dateStart().getDay())}.${addZero(
-                        dateStart().getMonth() + 1
-                      )}-${addZero(dateEnd().getDate())}.${addZero(
-                        dateEnd().getMonth() + 1
-                      )}`}
+                <Card.Body>{dataCards.header}</Card.Body>
+                <Card.Footer className="text-muted">
                   <Card.Text>
                     {!dataCards.periodEnd && !dataCards.periodStart
-                      ? ""
-                      : numberOfDays(
-                          dateStart().getDay(),
-                          dateEnd().getDate()
-                        ) + "дн."}
+                      ? "Уточнить дату"
+                      : `${addZero(dateStart().getDay())}.${addZero(
+                          dateStart().getMonth() + 1
+                        )}-${addZero(dateEnd().getDate())}.${addZero(
+                          dateEnd().getMonth() + 1
+                        )}`}
+                    <Card.Text>
+                      {!dataCards.periodEnd && !dataCards.periodStart
+                        ? ""
+                        : numberOfDays(
+                            dateStart().getDay(),
+                            dateEnd().getDate()
+                          ) + "дн."}
+                    </Card.Text>
                   </Card.Text>
-                </Card.Text>
-                <Card.Text>
-                  {!dataCards.minPrice
-                    ? "Уточнить цену"
-                    : `Цена от ${dataCards.minPrice} ₽`}
-                </Card.Text>
+                  <Card.Text>
+                    {!dataCards.minPrice
+                      ? "Уточнить цену"
+                      : `Цена от ${dataCards.minPrice.toLocaleString()} ₽`}
+                  </Card.Text>
+                </Card.Footer>
               </Card.Body>
             </Card>
           </Col>

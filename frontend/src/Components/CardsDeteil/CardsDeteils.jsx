@@ -1,4 +1,5 @@
 import React from "react";
+import { PhotoAlbum } from "../corousel/corousel";
 
 export const CardDiteils = ({ cardDiteilsData, numberOfDays, addZero }) => {
   return (
@@ -10,12 +11,13 @@ export const CardDiteils = ({ cardDiteilsData, numberOfDays, addZero }) => {
       </div>
       {cardDiteilsData?.minPrice}
       <div>{cardDiteilsData?.description.replace(/[\/<p>/]/g, "")}</div>
-      {cardDiteilsData?.route.map((res) => (
-        <div>{res}</div>
+      {/* <h6>Экскурсионный тур по маршруту:</h6> */}
+      {cardDiteilsData?.route.map((cites) => (
+        <div>{cites}</div>
       ))}
       <div className="album">
         {cardDiteilsData?.photoAlbum?.map((photo) => (
-          <img src={photo.thumbnail} alt="" />
+          <img src={photo.thumbnail} alt="img" />
         ))}
       </div>
     </>
