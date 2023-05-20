@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 
 import "./cardsDeteil.css";
 
-export const CardDiteils = ({ cardDiteilsData, numberOfDays, addZero }) => {
+export const CardDiteils = ({
+  cardDiteilsData,
+  numberOfDays,
+  addZero,
+  date,
+}) => {
   const [cardData, setCardData] = useState([]);
 
   useEffect(() => {
@@ -23,8 +28,12 @@ export const CardDiteils = ({ cardDiteilsData, numberOfDays, addZero }) => {
         <h1>{cardData.data?.title}</h1>
       </div>
       <div className="period">
-        {cardData.data?.periodStart}
-        {cardData.data?.periodEnd}
+        {`${addZero(date(cardData.data?.periodStart).getDay())}.${addZero(
+          date(cardData.data?.periodStart).getMonth() + 1
+        )} - ${addZero(date(cardData.data?.periodEnd).getDay())}.${addZero(
+          date(cardData.data?.periodEnd).getMonth() + 1
+        )} `}
+        {}
       </div>
       <div className="price">
         {!cardData.data?.minPrice

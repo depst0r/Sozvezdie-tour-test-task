@@ -4,7 +4,7 @@ import "./cards.css";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 
-export const Cards = ({ cardsData, addZero, numberOfDays }) => {
+export const Cards = ({ cardsData, addZero, numberOfDays, date }) => {
   const [card, setCard] = useState([]);
 
   useEffect(() => {
@@ -16,9 +16,6 @@ export const Cards = ({ cardsData, addZero, numberOfDays }) => {
   return (
     <>
       {card.data?.map((dataCards) => {
-        const dateStart = () => new Date(dataCards.periodStart);
-        const dateEnd = () => new Date(dataCards.periodEnd);
-
         return (
           <Col key={dataCards.id} className="img-wrap">
             <Link to="/diteils" className="link">
@@ -39,16 +36,18 @@ export const Cards = ({ cardsData, addZero, numberOfDays }) => {
                 <Card.Text className="date">
                   {!dataCards.periodEnd && !dataCards.periodStart
                     ? "Уточнить дату"
-                    : `${addZero(dateStart().getDay())}.${addZero(
-                        dateStart().getMonth() + 1
-                      )}-${addZero(dateEnd().getDate())}.${addZero(
-                        dateEnd().getMonth() + 1
-                      )}`}
+                    : `${addZero(
+                        date(dataCards.periodStart).getDay()
+                      )}.${addZero(
+                        date(dataCards.periodStart).getMonth() + 1
+                      )}-${addZero(
+                        date(dataCards.periodEnd).getDate()
+                      )}.${addZero(date(dataCards.periodEnd).getMonth() + 1)}`}
                   {!dataCards.periodEnd && !dataCards.periodStart
                     ? ""
                     : `(${numberOfDays(
-                        dateStart().getDay(),
-                        dateEnd().getDate()
+                        date(dataCards.periodStart).getDay(),
+                        date(dataCards.periodEnd).getDate()
                       )} дн.)`}
                 </Card.Text>
                 <Card.Header className="textTitle">
