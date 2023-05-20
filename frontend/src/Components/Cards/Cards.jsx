@@ -24,7 +24,7 @@ export const Cards = ({ cardsData, addZero, numberOfDays }) => {
             <Link to="/diteils" className="link">
               <Card
                 style={{ width: "25rem", margin: "5%" }}
-                onClick={() => cardsData(dataCards)}
+                onClick={() => cardsData(dataCards.id)}
                 className="text-center card"
               >
                 <Card.Img
