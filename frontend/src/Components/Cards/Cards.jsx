@@ -3,13 +3,12 @@ import Card from "react-bootstrap/Card";
 import "./cards.css";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
-import { BasicSpinner } from "../Spinner/Spinner";
 
 export const Cards = ({ cardsData, addZero, numberOfDays }) => {
   const [card, setCard] = useState([]);
 
   useEffect(() => {
-    fetch("https://cdn.sozvezdie-tour.ru/content/demo_offers-231105.json")
+    fetch("http://localhost:9000")
       .then((responseData) => responseData.json())
       .then((responseDataJSON) => setCard(responseDataJSON));
   }, []);
