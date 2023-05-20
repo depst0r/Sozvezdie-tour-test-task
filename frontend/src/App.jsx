@@ -11,7 +11,6 @@ function App() {
 
   const cardsData = (data) => {
     setCardDiteilsData(data);
-    console.log(cardDiteilsData, "app");
   };
 
   const addZero = (num) => {
