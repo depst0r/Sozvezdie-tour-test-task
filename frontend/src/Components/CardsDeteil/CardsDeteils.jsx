@@ -28,12 +28,19 @@ export const CardDiteils = ({
         <h1>{cardData.data?.title}</h1>
       </div>
       <div className="period">
-        {`${addZero(date(cardData.data?.periodStart).getDay())}.${addZero(
-          date(cardData.data?.periodStart).getMonth() + 1
-        )} - ${addZero(date(cardData.data?.periodEnd).getDay())}.${addZero(
-          date(cardData.data?.periodEnd).getMonth() + 1
-        )} `}
-        {}
+        {!cardData.data?.periodEnd && !cardData.data?.periodStart
+          ? "Уточнить дату"
+          : `${addZero(date(cardData.data?.periodStart).getDay())}.${addZero(
+              date(cardData.data?.periodStart).getMonth() + 1
+            )} - ${addZero(date(cardData.data?.periodEnd).getDay())}.${addZero(
+              date(cardData.data?.periodEnd).getMonth() + 1
+            )} `}
+        {!cardData.data?.periodEnd && !cardData.data?.periodStart
+          ? ""
+          : `(${numberOfDays(
+              date(cardData.data?.periodStart).getDay(),
+              date(cardData.data?.periodEnd).getDate()
+            )} дн.)`}
       </div>
       <div className="price">
         {!cardData.data?.minPrice
