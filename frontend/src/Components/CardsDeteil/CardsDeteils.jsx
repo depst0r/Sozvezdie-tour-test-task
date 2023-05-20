@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./cardsDeteil.css";
@@ -22,10 +22,14 @@ export const CardDiteils = ({ cardDiteilsData, numberOfDays, addZero }) => {
       <div className="info">
         {cardDiteilsData?.description.replace(/[\/<p>/]/g, "")}
       </div>
-      <h6>Экскурсионный тур по маршруту:</h6>
       <ul>
+        <li>
+          <h3>Экскурсионный тур по маршруту:</h3>
+        </li>
         {cardDiteilsData?.route.map((cites) => (
-          <li>{cites}</li>
+          <li>
+            <h3>{cites}</h3>
+          </li>
         ))}
       </ul>
       <div className="album">

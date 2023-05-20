@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card";
 import "./cards.css";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
+import { BasicSpinner } from "../Spinner/Spinner";
 
 export const Cards = ({ cardsData, addZero, numberOfDays }) => {
   const [card, setCard] = useState([]);
@@ -43,7 +44,7 @@ export const Cards = ({ cardsData, addZero, numberOfDays }) => {
                         dateStart().getMonth() + 1
                       )}-${addZero(dateEnd().getDate())}.${addZero(
                         dateEnd().getMonth() + 1
-                      )}`}{" "}
+                      )}`}
                   {!dataCards.periodEnd && !dataCards.periodStart
                     ? ""
                     : `(${numberOfDays(
