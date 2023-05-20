@@ -15,7 +15,7 @@ export const Cards = ({ cardsData, addZero, numberOfDays }) => {
 
   return (
     <>
-      {card.map((dataCards) => {
+      {card.data?.map((dataCards) => {
         const dateStart = () => new Date(dataCards.periodStart);
         const dateEnd = () => new Date(dataCards.periodEnd);
 

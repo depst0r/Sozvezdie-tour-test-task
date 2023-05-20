@@ -1,26 +1,37 @@
-const express = require('express');
-const data = require('./data.json');
+const express = require("express");
+const data = require("./data.json");
 
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send({ data });
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+
+  next();
 });
 
-app.get('/:id', (req, res) => {
+app.get("/", (req, res) => {
+  res.send({ data });
+});
+
+app.get("/:id", (req, res) => {
   if (Number(req.params.id) || Number(req.params.id) === 0) {
-    const item = data.find((i) => i.id === +req.params.id)
+    const item = data.find((i) => i.id === +req.params.id);
 
     if (item) {
       res.send({ data: item });
     } else {
-      res.send({ message: 'item not found!' });
+      res.send({ message: "item not found!" });
     }
   } else {
-    res.send({ message: 'route not match!' });
+    res.send({ message: "route not match!" });
   }
 });
 
 app.listen(9000, () => {
-    console.log('Application listening on port 9000!');
+  console.log("Application listening on port 9000!");
 });
