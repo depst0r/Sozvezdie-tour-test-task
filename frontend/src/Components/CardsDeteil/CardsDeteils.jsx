@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Slider from "../carousel/carousel";
 import "./cardsDeteil.css";
 
 export const CardDiteils = ({
@@ -10,7 +9,6 @@ export const CardDiteils = ({
   date,
 }) => {
   const [cardData, setCardData] = useState([]);
-  const [modalShow, setModalShow] = React.useState(false);
 
   useEffect(() => {
     getByCard(cardDiteilsData);
@@ -29,6 +27,11 @@ export const CardDiteils = ({
         <h1>{cardData.data?.title}</h1>
       </div>
       <div className="period">
+        {!cardData.data?.minPrice
+          ? "Уточнить цену "
+          : `Цена от ${cardData.data?.minPrice.toLocaleString(
+              "ru-RU"
+            )} ₽ За человека `}
         {!cardData.data?.periodEnd && !cardData.data?.periodStart
           ? "Уточнить дату"
           : `${addZero(date(cardData.data?.periodStart).getDay())}.${addZero(
@@ -37,13 +40,9 @@ export const CardDiteils = ({
               date(cardData.data?.periodEnd).getMonth() + 1
             )} `}
       </div>
-      <div className="price">
-        {!cardData.data?.minPrice
-          ? "Уточнить цену"
-          : `Цена от ${cardData.data?.minPrice.toLocaleString("ru-RU")} ₽`}
-      </div>
+
       <div className="info">
-        {cardData.data?.description.replace(/[\/<p>/]/g, "")}
+        {cardData.data?.description?.replace(/[\/<p>/]/g, "")}
       </div>
       <ul>
         <li>
@@ -67,11 +66,7 @@ export const CardDiteils = ({
       </div>
       <div className="album">
         {cardData.data?.photoAlbum?.map((photo) => (
-          <img
-            src={photo.thumbnail}
-            onClick={() => setModalShow(true)}
-            alt="img"
-          />
+          <img src={photo.thumbnail} alt="img" />
         ))}
       </div>
     </main>
