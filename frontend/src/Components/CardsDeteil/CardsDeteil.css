@@ -20,9 +20,28 @@ ul li {
 .album img{
     width: 10%;
     margin: 1%;
+    cursor: pointer;
 }
 .album, .period {
     text-align: center;
 }
 
+.carousel-control-next-icon {
+    color: black;
+}
 
+.numbersOfDays {
+    align-items: center;
+    text-align: center;
+    font-size: 2.32rem;
+    font-weight: 200;
+    line-height: 1.17;
+    display: inline-block;
+    padding: 10px 30px;
+    border: #f0aa62 1px solid;
+    border-radius: 57px;
+}
+#day {
+    align-items: center;
+    text-align: center;
+}

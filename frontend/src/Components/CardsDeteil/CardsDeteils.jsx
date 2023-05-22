@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Carousel from "react-bootstrap/Carousel";
-
+import Slider from "../carousel/carousel";
 import "./cardsDeteil.css";
 
 export const CardDiteils = ({
@@ -11,6 +10,7 @@ export const CardDiteils = ({
   date,
 }) => {
   const [cardData, setCardData] = useState([]);
+  const [modalShow, setModalShow] = React.useState(false);
 
   useEffect(() => {
     getByCard(cardDiteilsData);
@@ -36,12 +36,6 @@ export const CardDiteils = ({
             )} - ${addZero(date(cardData.data?.periodEnd).getDay())}.${addZero(
               date(cardData.data?.periodEnd).getMonth() + 1
             )} `}
-        {!cardData.data?.periodEnd && !cardData.data?.periodStart
-          ? ""
-          : `(${numberOfDays(
-              date(cardData.data?.periodStart).getDay(),
-              date(cardData.data?.periodEnd).getDate()
-            )} дн.)`}
       </div>
       <div className="price">
         {!cardData.data?.minPrice
@@ -61,23 +55,25 @@ export const CardDiteils = ({
           </li>
         ))}
       </ul>
+      <div className="numbersOfDays">
+        <span id="day">
+          {!cardData.data?.periodEnd && !cardData.data?.periodStart
+            ? ""
+            : `${numberOfDays(
+                date(cardData.data?.periodStart).getDay(),
+                date(cardData.data?.periodEnd).getDate()
+              )} дн.`}
+        </span>
+      </div>
       <div className="album">
         {cardData.data?.photoAlbum?.map((photo) => (
-          <img src={photo.thumbnail} alt="img" />
+          <img
+            src={photo.thumbnail}
+            onClick={() => setModalShow(true)}
+            alt="img"
+          />
         ))}
       </div>
-
-      <Carousel>
-        {cardData.data?.photoAlbum?.map((photo) => (
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src={photo.photo}
-              alt="First slide"
-            />
-          </Carousel.Item>
-        ))}
-      </Carousel>
     </main>
   );
 };
