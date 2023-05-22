@@ -8,7 +8,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   const [cardDiteilsData, setCardDiteilsData] = useState(null);
-  const [modalShow, setModalShow] = React.useState(false);
 
   const cardsData = (data) => {
     return setCardDiteilsData(data);
@@ -21,7 +20,7 @@ function App() {
   const transformDate = (date) => new Date(date);
 
   const numberOfDays = (endDate, startDate) => {
-    return Math.abs(startDate - endDate + 1);
+    return Math.abs(startDate - endDate);
   };
 
   return (

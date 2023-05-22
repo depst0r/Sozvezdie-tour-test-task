@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./cardsDeteil.css";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import { Slider } from "../carousel/carousel";
+import Carousel from "react-bootstrap/Carousel";
 
 export const CardDiteils = ({
   cardDiteilsData,
@@ -10,6 +14,11 @@ export const CardDiteils = ({
 }) => {
   const [cardData, setCardData] = useState([]);
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   useEffect(() => {
     getByCard(cardDiteilsData);
   }, [cardDiteilsData]);
@@ -18,6 +27,7 @@ export const CardDiteils = ({
     fetch(`http://localhost:9000/${id}`)
       .then((res) => res.json())
       .then((res) => setCardData(res));
+    console.log();
   };
 
   return (
@@ -40,7 +50,6 @@ export const CardDiteils = ({
               date(cardData.data?.periodEnd).getMonth() + 1
             )} `}
       </div>
-
       <div className="info">
         {cardData.data?.description?.replace(/[\/<p>/]/g, "")}
       </div>
@@ -54,6 +63,7 @@ export const CardDiteils = ({
           </li>
         ))}
       </ul>
+      {/* {show === true ? <Slider phoro={cardData} /> : console.log(show)} */}
       <div className="numbersOfDays">
         <span id="day">
           {!cardData.data?.periodEnd && !cardData.data?.periodStart
@@ -66,8 +76,24 @@ export const CardDiteils = ({
       </div>
       <div className="album">
         {cardData.data?.photoAlbum?.map((photo) => (
-          <img src={photo.thumbnail} alt="img" />
+          <img src={photo.thumbnail} alt="img" onClick={handleShow} />
         ))}
+        <div
+          className="modal show"
+          style={{ display: "block", position: "initial" }}
+        >
+          <Modal show={show} onHide={handleClose} size="lg">
+            <Modal.Header closeButton />
+            <Modal.Body>
+              <Slider photo={cardData} />
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
       </div>
     </main>
   );

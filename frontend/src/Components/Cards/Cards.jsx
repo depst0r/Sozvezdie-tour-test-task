@@ -41,19 +41,18 @@ export const Cards = ({ cardsData, addZero, numberOfDays, date }) => {
                       )}.${addZero(
                         date(dataCards.periodStart).getMonth() + 1
                       )}-${addZero(
-                        date(dataCards.periodEnd).getDate()
+                        date(dataCards.periodEnd).getDay()
                       )}.${addZero(date(dataCards.periodEnd).getMonth() + 1)}`}
                   {!dataCards.periodEnd && !dataCards.periodStart
                     ? ""
                     : `(${numberOfDays(
-                        date(dataCards.periodStart).getDay(),
-                        date(dataCards.periodEnd).getDate()
+                        date(dataCards.periodEnd).getDay(),
+                        date(dataCards.periodStart).getDay()
                       )} дн.)`}
                 </Card.Text>
                 <Card.Header className="textTitle">
                   <span className="c-white">{dataCards.title}</span>
                 </Card.Header>
-
                 <Card.Body>
                   <Card.Body>{dataCards.header}</Card.Body>
                   <Card.Text>
