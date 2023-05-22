@@ -28,7 +28,7 @@ export const Cards = ({ cardsData, addZero, numberOfDays, date }) => {
                   variant="top"
                   src={
                     !dataCards.photoCard?.thumbnail
-                      ? ""
+                      ? dataCards.photoAlbum[0].photo
                       : dataCards.photoCard?.thumbnail
                   }
                   alt="Изоброжение отсуствует"
