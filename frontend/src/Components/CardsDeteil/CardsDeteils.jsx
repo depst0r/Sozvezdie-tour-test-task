@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Carousel from "react-bootstrap/Carousel";
 
 import "./cardsDeteil.css";
 
@@ -65,6 +66,18 @@ export const CardDiteils = ({
           <img src={photo.thumbnail} alt="img" />
         ))}
       </div>
+
+      <Carousel>
+        {cardData.data?.photoAlbum?.map((photo) => (
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src={photo.photo}
+              alt="First slide"
+            />
+          </Carousel.Item>
+        ))}
+      </Carousel>
     </main>
   );
 };
