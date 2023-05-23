@@ -15,6 +15,13 @@ export const CardDiteils = ({
 
   const [show, setShow] = useState(false);
 
+  const [indexSlide, setIndexSlide] = useState();
+
+  const getIndexSlide = (index) => {
+    setIndexSlide(index);
+    console.log(index);
+  };
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -73,8 +80,15 @@ export const CardDiteils = ({
         </span>
       </div>
       <div className="album">
-        {cardData.data?.photoAlbum?.map((photo) => (
-          <img src={photo.thumbnail} alt="img" onClick={handleShow} />
+        {cardData.data?.photoAlbum?.map((photo, i) => (
+          <img
+            key={i}
+            src={photo.thumbnail}
+            alt="img"
+            onClick={() => {
+              return handleShow(), getIndexSlide(i);
+            }}
+          />
         ))}
         <div
           className="modal show"
@@ -83,7 +97,7 @@ export const CardDiteils = ({
           <Modal show={show} onHide={handleClose} size="lg">
             <Modal.Header closeButton />
             <Modal.Body>
-              <Slider photo={cardData} />
+              <Slider photo={cardData} indexSlide={indexSlide} />
             </Modal.Body>
             <Modal.Footer></Modal.Footer>
           </Modal>
