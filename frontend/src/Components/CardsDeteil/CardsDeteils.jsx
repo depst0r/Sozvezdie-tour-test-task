@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./cardsDeteil.css";
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Slider } from "../carousel/carousel";
-import Carousel from "react-bootstrap/Carousel";
+
+import "./cardsDeteil.css";
 
 export const CardDiteils = ({
   cardDiteilsData,
@@ -63,7 +62,6 @@ export const CardDiteils = ({
           </li>
         ))}
       </ul>
-      {/* {show === true ? <Slider phoro={cardData} /> : console.log(show)} */}
       <div className="numbersOfDays">
         <span id="day">
           {!cardData.data?.periodEnd && !cardData.data?.periodStart
@@ -87,11 +85,7 @@ export const CardDiteils = ({
             <Modal.Body>
               <Slider photo={cardData} />
             </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-            </Modal.Footer>
+            <Modal.Footer></Modal.Footer>
           </Modal>
         </div>
       </div>
