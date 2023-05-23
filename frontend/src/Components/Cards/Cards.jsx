@@ -20,7 +20,7 @@ export const Cards = ({ cardsData, addZero, numberOfDays, date }) => {
           <Col key={dataCards.id} className="img-wrap">
             <Link to="/diteils" className="link">
               <Card
-                style={{ width: "25rem", margin: "5%" }}
+                style={{ width: "25rem", margin: "5%", height: "45rem" }}
                 onClick={() => cardsData(dataCards.id)}
                 className="text-center card"
               >

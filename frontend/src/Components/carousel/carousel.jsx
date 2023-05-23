@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Carousel from "react-bootstrap/Carousel";
 
 export const Slider = ({ photo, indexSlide }) => {
-  // console.log(indexSlide);
   return (
     <>
       <Carousel fade variant="dark" activeIndex={indexSlide}>

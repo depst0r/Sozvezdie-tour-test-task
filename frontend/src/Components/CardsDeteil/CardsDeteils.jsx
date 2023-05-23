@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import { Slider } from "../carousel/carousel";
+import Carousel from "react-bootstrap/Carousel";
 
 import "./cardsDeteil.css";
 
@@ -19,7 +20,6 @@ export const CardDiteils = ({
 
   const getIndexSlide = (index) => {
     setIndexSlide(index);
-    console.log(index);
   };
 
   const handleClose = () => setShow(false);
@@ -99,7 +99,6 @@ export const CardDiteils = ({
             <Modal.Body>
               <Slider photo={cardData} indexSlide={indexSlide} />
             </Modal.Body>
-            <Modal.Footer></Modal.Footer>
           </Modal>
         </div>
       </div>

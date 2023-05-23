@@ -20,7 +20,7 @@ function App() {
   const transformDate = (date) => new Date(date);
 
   const numberOfDays = (endDate, startDate) => {
-    return Math.abs(startDate - endDate);
+    return Math.abs(startDate - endDate) + 1;
   };
 
   return (

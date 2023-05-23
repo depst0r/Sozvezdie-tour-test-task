@@ -35,6 +35,6 @@
     text-decoration: none;
     color: black;
 }
-/* .img-wrap {
-    height: 40rem
-} */
+.card {
+    max-height: 55rem;
+}
