@@ -6,9 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import moment from "moment";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-const now = moment();
-
-console.log(now.format("DD-MM"));
+console.log(moment("5-5-2022").format("DD-MM"));
 
 root.render(
   <React.StrictMode>

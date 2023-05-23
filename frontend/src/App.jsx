@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CardDiteils } from "./Components/cardsDeteil/cardsDeteils";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import moment from "moment";
 
 function App() {
   const [cardDiteilsData, setCardDiteilsData] = useState(null);
@@ -17,7 +18,7 @@ function App() {
     return num < 10 ? "0" + num : num;
   };
 
-  const transformDate = (date) => new Date(date);
+  const transformDate = (date) => moment(date).format("DD.MM");
 
   const numberOfDays = (endDate, startDate) => {
     return Math.abs(startDate - endDate) + 1;
