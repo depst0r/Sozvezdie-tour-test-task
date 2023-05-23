@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card";
 import "./cards.css";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 export const Cards = ({ cardsData, addZero, numberOfDays, date }) => {
   const [card, setCard] = useState([]);
@@ -46,8 +47,8 @@ export const Cards = ({ cardsData, addZero, numberOfDays, date }) => {
                   {!dataCards.periodEnd && !dataCards.periodStart
                     ? ""
                     : `(${numberOfDays(
-                        date(dataCards.periodEnd).getDay(),
-                        date(dataCards.periodStart).getDay()
+                        date(dataCards.periodStart).getDay(),
+                        date(dataCards.periodEnd).getDay()
                       )} дн.)`}
                 </Card.Text>
                 <Card.Header className="textTitle">
