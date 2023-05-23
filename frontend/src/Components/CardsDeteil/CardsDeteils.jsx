@@ -37,19 +37,27 @@ export const CardDiteils = ({ cardDiteilsData, date }) => {
         <h1>{cardData.data?.title}</h1>
       </div>
       <div className="period">
-        {!cardData.data?.minPrice
-          ? "Уточнить цену "
-          : `Цена от ${cardData.data?.minPrice.toLocaleString(
-              "ru-RU"
-            )} ₽ За человека `}
-        {!cardData.data?.periodEnd && !cardData.data?.periodStart
-          ? "Уточнить дату"
-          : `${date(cardData.data?.periodStart)} - ${date(
-              cardData.data?.periodEnd
-            )}
-            `}
+        {!cardData.data?.minPrice ? (
+          "Уточнить цену "
+        ) : (
+          <>
+            <span>Цена от</span>
+            <span id="priceDiteils">
+              {cardData.data?.minPrice.toLocaleString("ru-RU")} ₽
+            </span>
+            <span>за человека</span>
+          </>
+        )}
+        {!cardData.data?.periodEnd && !cardData.data?.periodStart ? (
+          "Уточнить дату"
+        ) : (
+          <span id="datePeriod">
+            {date(cardData.data?.periodStart)} -{" "}
+            {date(cardData.data?.periodEnd)}
+          </span>
+        )}
       </div>
-      <div className="info">
+      <div className="info font-dancing-script">
         {cardData.data?.description?.replace(/[\/<p>/]/g, "")}
       </div>
       <ul>
