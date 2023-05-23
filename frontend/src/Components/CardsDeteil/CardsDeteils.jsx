@@ -2,15 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import { Slider } from "../carousel/carousel";
-
 import "./cardsDeteil.css";
+import moment from "moment";
 
-export const CardDiteils = ({
-  cardDiteilsData,
-  numberOfDays,
-  addZero,
-  date,
-}) => {
+export const CardDiteils = ({ cardDiteilsData, date }) => {
   const [cardData, setCardData] = useState([]);
 
   const [show, setShow] = useState(false);
@@ -49,11 +44,10 @@ export const CardDiteils = ({
             )} ₽ За человека `}
         {!cardData.data?.periodEnd && !cardData.data?.periodStart
           ? "Уточнить дату"
-          : `${addZero(date(cardData.data?.periodStart).getDay())}.${addZero(
-              date(cardData.data?.periodStart).getMonth() + 1
-            )} - ${addZero(date(cardData.data?.periodEnd).getDay())}.${addZero(
-              date(cardData.data?.periodEnd).getMonth() + 1
-            )} `}
+          : `${date(cardData.data?.periodStart)} - ${date(
+              cardData.data?.periodEnd
+            )}
+            `}
       </div>
       <div className="info">
         {cardData.data?.description?.replace(/[\/<p>/]/g, "")}
@@ -72,10 +66,12 @@ export const CardDiteils = ({
         <span id="day">
           {!cardData.data?.periodEnd && !cardData.data?.periodStart
             ? ""
-            : `${numberOfDays(
-                date(cardData.data?.periodStart).getDay(),
-                date(cardData.data?.periodEnd).getDate()
-              )} дн.`}
+            : `${
+                moment(cardData.data?.periodEnd).diff(
+                  moment(cardData.data?.periodStart),
+                  "days"
+                ) + 1
+              } дн.`}
         </span>
       </div>
       <div className="album">

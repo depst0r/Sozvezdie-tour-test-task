@@ -14,15 +14,7 @@ function App() {
     return setCardDiteilsData(data);
   };
 
-  const addZero = (num) => {
-    return num < 10 ? "0" + num : num;
-  };
-
   const transformDate = (date) => moment(date).format("DD.MM");
-
-  const numberOfDays = (endDate, startDate) => {
-    return Math.abs(startDate - endDate) + 1;
-  };
 
   return (
     <Router>
@@ -33,22 +25,13 @@ function App() {
               <Route
                 exact
                 path="/"
-                element={
-                  <Cards
-                    cardsData={cardsData}
-                    addZero={addZero}
-                    numberOfDays={numberOfDays}
-                    date={transformDate}
-                  />
-                }
+                element={<Cards cardsData={cardsData} date={transformDate} />}
               />
               <Route
                 path="/diteils"
                 element={
                   <CardDiteils
                     cardDiteilsData={cardDiteilsData}
-                    numberOfDays={numberOfDays}
-                    addZero={addZero}
                     date={transformDate}
                   />
                 }
