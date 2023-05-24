@@ -57,7 +57,7 @@ export const CardDiteils = ({ cardDiteilsData, date }) => {
           </span>
         )}
       </div>
-      <div className="info font-dancing-script">
+      <div className="info">
         {cardData.data?.description?.replace(/[\/<p>/]/g, "")}
       </div>
       <ul>

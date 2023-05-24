@@ -22,3 +22,6 @@ code {
 .font-dancing-script {
   font-family: "DancingScript";
 }
+span {
+  margin: 2px;
+}

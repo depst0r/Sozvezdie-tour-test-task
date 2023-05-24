@@ -19,7 +19,7 @@ function App() {
   return (
     <Router>
       <>
-        <Container>
+        <Container className="font-dancing-script">
           <Row>
             <Routes>
               <Route

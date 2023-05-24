@@ -25,15 +25,18 @@ export const Cards = ({ cardsData, date }) => {
                 onClick={() => cardsData(dataCards.id)}
                 className="text-center card"
               >
-                <Card.Img
-                  variant="top"
-                  src={
-                    !dataCards.photoCard?.thumbnail
-                      ? dataCards.photoAlbum[0].photo
-                      : dataCards.photoCard?.thumbnail
-                  }
-                  alt="Изоброжение отсуствует"
-                />
+                <div id="card-img">
+                  <Card.Img
+                    variant="top"
+                    src={
+                      !dataCards.photoCard?.thumbnail
+                        ? dataCards.photoAlbum[0].photo
+                        : dataCards.photoCard?.thumbnail
+                    }
+                    alt="Изоброжение отсуствует"
+                    className=""
+                  />
+                </div>
                 <Card.Text className="date">
                   {!dataCards.periodEnd && !dataCards.periodStart
                     ? "Уточнить дату"
