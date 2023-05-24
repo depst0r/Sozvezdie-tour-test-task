@@ -12,6 +12,7 @@ h3 {
 
 ul li {
     display: inline-block;
+    align-items: center
 }
 
 .album img{
@@ -34,7 +35,12 @@ ul li {
     font-weight: 200;
     line-height: 1.17;
 }
-
+.city {
+    
+    font-size: 1.26rem;
+    line-height: 1.13;
+    font-weight: 200;
+}
 
 #datePeriod {
     color: #039be5;

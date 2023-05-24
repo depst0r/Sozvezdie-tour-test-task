@@ -27,9 +27,8 @@ export const CardDiteils = ({ cardDiteilsData, date }) => {
     fetch(`http://localhost:9000/${id}`)
       .then((res) => res.json())
       .then((res) => setCardData(res));
-    console.log();
   };
-
+  console.log(cardData.data?.route.join("-"));
   return (
     <main key={cardData.data?.id}>
       <Link to="/">На главную</Link>
@@ -64,11 +63,7 @@ export const CardDiteils = ({ cardDiteilsData, date }) => {
         <li>
           <h3>Экскурсионный тур по маршруту:</h3>
         </li>
-        {cardData.data?.route.map((cites) => (
-          <li>
-            <h3>{cites}</h3>
-          </li>
-        ))}
+        <span className="city">{cardData.data?.route.join("-")}</span>
       </ul>
       <div className="numbersOfDays">
         <span id="day">
