@@ -28,7 +28,6 @@ export const CardDiteils = ({ cardDiteilsData, date }) => {
       .then((res) => res.json())
       .then((res) => setCardData(res));
   };
-  console.log(cardData.data?.route.join("-"));
   return (
     <main key={cardData.data?.id}>
       <Link to="/">На главную</Link>
