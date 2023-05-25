@@ -1,45 +1,33 @@
-import React, { useState } from "react";
-import { Cards } from "./Components/cards/cards";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { CardDiteils } from "./Components/cardsDeteil/cardsDeteils";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import moment from "moment";
+
+import { Cards } from './Components/Cards/Cards';
+import { CardDiteils } from './Components/CardsDeteil/CardsDeteils';
+
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  const [cardDiteilsData, setCardDiteilsData] = useState(null);
-
-  const cardsData = (data) => {
-    return setCardDiteilsData(data);
-  };
-
-  const transformDate = (date) => moment(date).format("DD.MM");
-
   return (
     <Router>
-      <>
-        <Container className="font-dancing-script">
-          <Row>
-            <Routes>
-              <Route
-                exact
-                path="/"
-                element={<Cards cardsData={cardsData} date={transformDate} />}
-              />
-              <Route
-                path="/diteils"
-                element={
-                  <CardDiteils
-                    cardDiteilsData={cardDiteilsData}
-                    date={transformDate}
-                  />
-                }
-              />
-            </Routes>
-          </Row>
-        </Container>
-      </>
+      <Container className="font-dancing-script">
+        <Row>
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={<Cards />}
+            />
+            <Route
+              path="/diteils/:id"
+              element={
+                <CardDiteils />
+              }
+            />
+          </Routes>
+        </Row>
+      </Container>
     </Router>
   );
 }

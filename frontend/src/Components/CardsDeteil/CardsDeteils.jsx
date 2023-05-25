@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
-import { Slider } from "../carousel/carousel";
-import "./cardsDeteil.css";
 import moment from "moment";
 
-export const CardDiteils = ({ cardDiteilsData, date }) => {
-  const [cardData, setCardData] = useState([]);
+import { Slider } from "../carousel/carousel";
+import { API_URL } from "../../constants";
+import { transformDate } from "../../utils";
+
+import "./CardsDeteil.css";
+
+export const CardDiteils = () => {
+  const location = useLocation();
+  const { id } = useParams();
+
+  const [cardData, setCardData] = useState(location.state);
 
   const [show, setShow] = useState(false);
 
@@ -20,70 +27,73 @@ export const CardDiteils = ({ cardDiteilsData, date }) => {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    getByCard(cardDiteilsData);
-  }, [cardDiteilsData]);
+    if (!cardData) {
+      getByCard(id);
+    }
+  }, []);
 
   const getByCard = (id) => {
-    fetch(`http://localhost:9000/${id}`)
+    fetch(API_URL + id)
       .then((res) => res.json())
-      .then((res) => setCardData(res));
+      .then((res) => setCardData(res.data));
   };
   return (
-    <main key={cardData.data?.id}>
+    <main key={cardData?.id}>
       <Link to="/">На главную</Link>
       <div className="title">
-        <h1>{cardData.data?.title}</h1>
+        <h1>{cardData?.title}</h1>
       </div>
       <div className="period">
-        {!cardData.data?.minPrice ? (
-          "Уточнить цену "
-        ) : (
+        {cardData?.minPrice ? (
           <>
             <span>Цена от</span>
             <span id="priceDiteils">
-              {cardData.data?.minPrice.toLocaleString("ru-RU")} ₽
+              {cardData?.minPrice.toLocaleString("ru-RU")} ₽
             </span>
             <span>за человека</span>
           </>
-        )}
-        {!cardData.data?.periodEnd && !cardData.data?.periodStart ? (
-          "Уточнить дату"
         ) : (
+          "Уточнить цену "
+        )}
+        {cardData?.periodEnd && cardData?.periodStart ? (
           <span id="datePeriod">
-            {date(cardData.data?.periodStart)} -{" "}
-            {date(cardData.data?.periodEnd)}
+            {transformDate(cardData?.periodStart)} -{" "}
+            {transformDate(cardData?.periodEnd)}
           </span>
+        ) : (
+          "Уточнить дату"
         )}
       </div>
       <div className="info">
-        {cardData.data?.description?.replace(/[\/<p>/]/g, "")}
+        {cardData?.description?.replace(/[\/<p>/]/g, "")}
       </div>
       <ul>
         <li>
           <h3>Экскурсионный тур по маршруту:</h3>
         </li>
-        <span className="city">{cardData.data?.route.join("-")}</span>
+        <span className="city">{cardData?.route.join("-")}</span>
       </ul>
       <div className="numbersOfDays">
         <span id="day">
-          {!cardData.data?.periodEnd && !cardData.data?.periodStart
+          {!cardData?.periodEnd && !cardData?.periodStart
             ? ""
             : `${
-                moment(cardData.data?.periodEnd).diff(
-                  moment(cardData.data?.periodStart),
+                moment(cardData?.periodEnd).diff(
+                  moment(cardData?.periodStart),
                   "days"
                 ) + 1
               } дн.`}
         </span>
       </div>
       <div className="album">
-        {cardData.data?.photoAlbum?.map((photo, i) => (
+        {cardData?.photoAlbum?.map((photo, i) => (
           <img
             key={i}
             src={photo.thumbnail}
             alt="img"
             onClick={() => {
-              return handleShow(), getIndexSlide(i);
+              handleShow();
+              getIndexSlide(i);
             }}
           />
         ))}
